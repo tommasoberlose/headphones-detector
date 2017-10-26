@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Headphones Detector</string>
+    <string name="action_enable">Enable Detector</string>
+    <string name="action_disable">Disable Detector</string>
+    <string name="settings_app_name_title">Select Application to Start</string>
+    <string name="error">Something went wrong. Try Again!</string>
+    <string name="not_selected">Not Selected</string>
+    <string name="action_choose_application">Select Application</string>
+</resources>
