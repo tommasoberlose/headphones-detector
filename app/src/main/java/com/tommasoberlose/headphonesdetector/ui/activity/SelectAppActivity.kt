@@ -1,8 +1,6 @@
-package com.tommasoberlose.headphonesdetector
+package com.tommasoberlose.headphonesdetector.ui.activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -12,6 +10,11 @@ import android.preference.PreferenceManager
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
+import com.tommasoberlose.headphonesdetector.*
+import com.tommasoberlose.headphonesdetector.`object`.event.AppInfoSavedEvent
+import com.tommasoberlose.headphonesdetector.`object`.event.ApplicationListEvent
+import com.tommasoberlose.headphonesdetector.constant.Constants
+import com.tommasoberlose.headphonesdetector.ui.adapter.ApplicationInfoAdapter
 import kotlinx.android.synthetic.main.activity_select_app.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -32,7 +35,7 @@ class SelectAppActivity : AppCompatActivity() {
         SP = PreferenceManager.getDefaultSharedPreferences(this)
 
         action_default.setOnClickListener {
-            selectDefaultApp()
+            onBackPressed()
         }
 
         list_view.setHasFixedSize(true);
@@ -40,12 +43,12 @@ class SelectAppActivity : AppCompatActivity() {
         list_view.layoutManager = mLayoutManager;
 
         adapter = ApplicationInfoAdapter(this, appListFiltered);
-        list_view.setAdapter(adapter);
+        list_view.adapter = adapter;
 
         location.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(text: Editable?) {
                 Thread().run {
-                    val appsFiltered = if (text == null || text.equals("")) appList else appList.filter { pm.getApplicationLabel(it).toString().contains(text.toString(), true) }
+                    val appsFiltered = if (text == null || text.toString() == "") appList else appList.filter { pm.getApplicationLabel(it).toString().contains(text.toString(), true) }
                     EventBus.getDefault().post(ApplicationListEvent(appsFiltered, true))
                 }
             }
@@ -60,21 +63,11 @@ class SelectAppActivity : AppCompatActivity() {
     }
 
     @SuppressLint("ApplySharedPref")
-    fun selectDefaultApp() {
-        SP.edit()
-                .remove(MainActivity.Constants.PREF_APP_NAME)
-                .remove(MainActivity.Constants.PREF_APP_PACKAGE)
-                .commit()
-
-        finish()
-    }
-
-    @SuppressLint("ApplySharedPref")
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun saveApp(e: AppInfoSavedEvent) {
         SP.edit()
-                .putString(MainActivity.Constants.PREF_APP_NAME, pm.getApplicationLabel(e.app).toString())
-                .putString(MainActivity.Constants.PREF_APP_PACKAGE, e.app.packageName)
+                .putString(Constants.PREF_APP_NAME, pm.getApplicationLabel(e.app).toString())
+                .putString(Constants.PREF_APP_PACKAGE, e.app.packageName)
                 .commit()
         finish()
     }

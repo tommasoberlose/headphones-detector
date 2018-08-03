@@ -1,15 +1,15 @@
-package com.tommasoberlose.headphonesdetector
+package com.tommasoberlose.headphonesdetector.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
-import android.provider.AlarmClock
 import com.google.android.gms.awareness.fence.FenceState
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Toast
+import com.tommasoberlose.headphonesdetector.R
+import com.tommasoberlose.headphonesdetector.ui.activity.MainActivity
 
 
 class MyBroadcastReceiver : BroadcastReceiver() {

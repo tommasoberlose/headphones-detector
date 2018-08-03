@@ -1,4 +1,4 @@
-package com.tommasoberlose.headphonesdetector
+package com.tommasoberlose.headphonesdetector.ui.adapter
 
 import android.content.Context
 import android.content.pm.ApplicationInfo
@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.tommasoberlose.headphonesdetector.R
+import com.tommasoberlose.headphonesdetector.`object`.event.AppInfoSavedEvent
 import org.greenrobot.eventbus.EventBus
 
 /**

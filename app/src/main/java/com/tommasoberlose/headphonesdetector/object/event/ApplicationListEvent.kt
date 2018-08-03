@@ -1,4 +1,4 @@
-package com.tommasoberlose.headphonesdetector
+package com.tommasoberlose.headphonesdetector.`object`.event
 
 import android.content.pm.ApplicationInfo
 

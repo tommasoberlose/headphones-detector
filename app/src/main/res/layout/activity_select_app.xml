@@ -4,72 +4,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorAccent"
-    tools:context="com.tommasoberlose.headphonesdetector.SelectAppActivity">
+    tools:context="com.tommasoberlose.headphonesdetector.ui.activity.SelectAppActivity">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="64dp"
         app:cardCornerRadius="0dp"
         android:id="@+id/top_card"
-        android:transitionName="top_card"
         app:cardBackgroundColor="@color/colorPrimary">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:id="@+id/app_name"
-            android:transitionName="app_name"
+            android:padding="24dp"
             android:background="?android:attr/selectableItemBackground"
             android:textAppearance="?android:attr/textAppearanceButton"
             android:textColor="@android:color/white"
             android:text="@string/app_name"/>
     </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/top_card"
-        app:cardCornerRadius="3dp"
-        android:layout_margin="16dp"
-        android:background="@android:color/white"
-        app:cardBackgroundColor="@android:color/white">
-        <LinearLayout
+        android:background="@color/colorAccent"
+        android:orientation="vertical">
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="8dp"
+            app:cardCornerRadius="3dp"
+            android:layout_margin="16dp"
+            android:background="@android:color/white"
+            app:cardBackgroundColor="@android:color/white">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-                <EditText
-                    android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:orientation="horizontal"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical">
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:padding="16dp"
+                        android:inputType="textCapWords"
+                        android:id="@+id/location"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:hint="@string/action_choose_application"/>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:padding="12dp"
+                        android:layout_marginRight="8dp"
+                        android:id="@+id/action_default"
+                        android:src="@drawable/ic_action_close"
+                        android:tint="@android:color/black"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.1"
+                    android:background="@android:color/black"/>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/white"
-                    android:padding="16dp"
-                    android:inputType="textCapWords"
-                    android:id="@+id/location"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:hint="@string/action_choose_application"/>
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:padding="12dp"
-                    android:id="@+id/action_default"
-                    android:src="@drawable/ic_action_close"
-                    android:tint="@android:color/black"/>
+                    android:id="@+id/list_view" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.1"
-                android:background="@android:color/black"/>
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/list_view" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 </RelativeLayout>
